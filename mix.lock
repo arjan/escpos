@@ -1,0 +1,4 @@
+%{
+  "imago": {:hex, :imago, "0.2.15", "47dfade1dbab7f8b028ff0520c3f01fafe836f30418b1fd04a92d748904180bd", [:mix], [{:rustler, "~> 0.20.0", [hex: :rustler, repo: "hexpm", optional: false]}], "hexpm"},
+  "rustler": {:hex, :rustler, "0.20.0", "6b2cc8149700a7b1df2226dbe273ec1f9449318cad3bd3b5b68125a4cf1f438b", [:mix], [], "hexpm"},
+}
