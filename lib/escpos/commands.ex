@@ -14,17 +14,17 @@ defmodule Escpos.Commands do
   # @type {Object}
   defmodule FeedControlSequences do
     # Print and line fee
-    def ctl_lf(), do: "\x0a"
+    def lf(), do: "\x0a"
     # Print and feed paper (without spaces between lines
-    def ctl_glf(), do: "\x4a\x00"
+    def glf(), do: "\x4a\x00"
     # Form fee
-    def ctl_ff(), do: "\x0c"
+    def ff(), do: "\x0c"
     # Carriage retur
-    def ctl_cr(), do: "\x0d"
+    def cr(), do: "\x0d"
     # Horizontal ta
-    def ctl_ht(), do: "\x09"
+    def ht(), do: "\x09"
     # Vertical ta
-    def ctl_vt(), do: "\x0b"
+    def vt(), do: "\x0b"
   end
 
   defmodule CharacterSpacing do
@@ -41,11 +41,11 @@ defmodule Escpos.Commands do
   # @type {Object}
   defmodule Hardware do
     # Clear data in buffer and reset mode
-    def hw_init(), do: "\x1b\x40"
+    def init(), do: "\x1b\x40"
     # Printer selec
-    def hw_select(), do: "\x1b\x3d\x01"
+    def select(), do: "\x1b\x3d\x01"
     # Reset printer hardwar
-    def hw_reset(), do: "\x1b\x3f\x0a\x00"
+    def reset(), do: "\x1b\x3f\x0a\x00"
   end
 
   # [CASH_DRAWER Cash Drawer]

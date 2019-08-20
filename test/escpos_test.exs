@@ -3,6 +3,7 @@ defmodule EscposTest do
   doctest Escpos
 
   alias Escpos.Printer
+  alias Escpos.Commands
 
   @path Path.wildcard("/dev/usb/lp*") |> List.first()
 
@@ -12,8 +13,12 @@ defmodule EscposTest do
     assert {:ok, %Printer{} = p} = Printer.open(@path)
 
     # Escpos.write_image(p, "test/hello.jpg")
-    Escpos.write(p, "hello\n")
-    # Escpos.write_image(p, "test/dot.png")
+    #    Escpos.write(p, Commands.Hardware.reset())
+    #    Escpos.write(p, Commands.TextFormat.txt_normal())
+    Escpos.write_image(p, "test/hello.jpg")
+
+    Escpos.write(p, "\n\n\n\n")
+    Escpos.write(p, Commands.Paper.full_cut())
 
     :ok = Printer.close(p)
   end
