@@ -11,9 +11,9 @@ defmodule Escpos do
   end
 
   def write_image(printer, path) do
-    {:ok, {w, h, pixels}} = Imago.read_pixels(path)
+    {:ok, pixels} = Pixels.read_file(path)
 
-    data = Image.pixels_to_bitmap(w, h, pixels)
+    data = Image.pixels_to_bitmap(pixels)
     dd = Base.encode16(data) |> String.to_charlist() |> Enum.chunk_every(8)
     IO.inspect(dd, label: "data")
 

@@ -1,4 +1,4 @@
 %{
-  "imago": {:hex, :imago, "0.2.15", "47dfade1dbab7f8b028ff0520c3f01fafe836f30418b1fd04a92d748904180bd", [:mix], [{:rustler, "~> 0.20.0", [hex: :rustler, repo: "hexpm", optional: false]}], "hexpm"},
-  "rustler": {:hex, :rustler, "0.20.0", "6b2cc8149700a7b1df2226dbe273ec1f9449318cad3bd3b5b68125a4cf1f438b", [:mix], [], "hexpm"},
+  "elixir_make": {:hex, :elixir_make, "0.6.0", "38349f3e29aff4864352084fc736fa7fa0f2995a819a737554f7ebd28b85aaab", [:mix], [], "hexpm"},
+  "pixels": {:hex, :pixels, "0.1.2", "0de6fb5529b7490fdd35a43b7c0952b63bb6f2c1c07b0a96ecdcd998e18bb0e6", [:make, :mix], [{:elixir_make, "~> 0.6.0", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"}
 }

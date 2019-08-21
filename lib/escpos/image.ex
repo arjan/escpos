@@ -1,8 +1,8 @@
 defmodule Escpos.Image do
   alias Escpos.Commands.Gsv0Format
 
-  def pixels_to_bitmap(w, h, pixels) do
-    data = make_bitmap(pixels, w, <<>>)
+  def pixels_to_bitmap(%Pixels{width: w, height: h, data: data}) do
+    data = make_bitmap(data, w, <<>>)
 
     iw = trunc(bit_size(data) / h / 8)
     ih = h
@@ -18,12 +18,12 @@ defmodule Escpos.Image do
     |> IO.iodata_to_binary()
   end
 
-  defp make_bitmap([], _, acc) do
+  defp make_bitmap(<<>>, _, acc) do
     acc
   end
 
-  defp make_bitmap(pixels, width, acc) do
-    {row, rest} = make_bitmap_row(pixels, width, <<>>)
+  defp make_bitmap(data, width, acc) do
+    {row, rest} = make_bitmap_row(data, width, <<>>)
     {bl, br} = padding(width)
     make_bitmap(rest, width, <<acc::bitstring, bl::bitstring, row::bitstring, br::bitstring>>)
   end
@@ -32,7 +32,7 @@ defmodule Escpos.Image do
     {acc, rest}
   end
 
-  defp make_bitmap_row([r, g, b, a | rest], w, acc) do
+  defp make_bitmap_row(<<r, g, b, _a, rest::binary>>, w, acc) do
     white =
       if r > 200 or g > 200 or b > 200 do
         0
