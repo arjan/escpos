@@ -10,7 +10,7 @@ defmodule EscposTest do
   alias Escpos.Printer
 
   test "printer" do
-    assert {:ok, %Printer{} = p} = Printer.open(@path)
+    assert {:ok, %Printer{} = p} = Printer.from_path(@path)
 
     # Escpos.write_image(p, "test/hello.jpg")
     #    Escpos.write(p, Commands.Hardware.reset())

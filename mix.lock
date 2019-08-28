@@ -1,4 +1,5 @@
 %{
   "elixir_make": {:hex, :elixir_make, "0.6.0", "38349f3e29aff4864352084fc736fa7fa0f2995a819a737554f7ebd28b85aaab", [:mix], [], "hexpm"},
-  "pixels": {:hex, :pixels, "0.1.2", "0de6fb5529b7490fdd35a43b7c0952b63bb6f2c1c07b0a96ecdcd998e18bb0e6", [:make, :mix], [{:elixir_make, "~> 0.6.0", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"}
+  "libusb": {:git, "https://github.com/makerion/elixir_libusb.git", "dfc7a991ce04ad887f33b46794c131922cbede41", []},
+  "pixels": {:hex, :pixels, "0.1.2", "0de6fb5529b7490fdd35a43b7c0952b63bb6f2c1c07b0a96ecdcd998e18bb0e6", [:make, :mix], [{:elixir_make, "~> 0.6.0", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"},
 }

@@ -21,7 +21,8 @@ defmodule Escpos.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:pixels, "~> 0.0"}
+      {:pixels, "~> 0.0"},
+      {:libusb, path: "../elixir_libusb"}
     ]
   end
 end

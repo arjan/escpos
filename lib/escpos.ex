@@ -6,17 +6,25 @@ defmodule Escpos do
   alias Escpos.Printer
   alias Escpos.Image
 
-  def write(%Printer{fp: fp}, data) when is_pid(fp) do
-    IO.binwrite(fp, data)
+  def write(%Printer{type: :file, handle: handle}, data) when is_pid(handle) do
+    IO.binwrite(handle, data)
   end
 
-  def write_image(printer, path) do
+  def write(%Printer{type: :usb, handle: handle}, data) do
+    LibUsb.bulk_send(handle, 1, data, 100_000)
+  end
+
+  def write_image_file(printer, path) do
     {:ok, pixels} = Pixels.read_file(path)
 
     data = Image.pixels_to_bitmap(pixels)
-    dd = Base.encode16(data) |> String.to_charlist() |> Enum.chunk_every(8)
-    IO.inspect(dd, label: "data")
+    write(printer, data)
+  end
 
+  def write_image_data(printer, data) do
+    {:ok, pixels} = Pixels.read_file(data)
+
+    data = Image.pixels_to_bitmap(pixels)
     write(printer, data)
   end
 end
