@@ -1,13 +1,17 @@
 defmodule Escpos.Image do
   alias Escpos.Commands.Gsv0Format
 
-  def pixels_to_bitmap(%Pixels{width: w, height: h, data: data}) do
+  @chunk_height 128
+
+  def pixels_to_bitmap(pixels) do
+    pixels_to_iodata(pixels) |> IO.iodata_to_binary()
+  end
+
+  def pixels_to_iodata(%Pixels{width: w, height: h, data: data}) when h <= @chunk_height do
     data = make_bitmap(data, w, <<>>)
 
     iw = trunc(bit_size(data) / h / 8)
     ih = h
-
-    IO.inspect(iw, label: "iw")
 
     [
       Gsv0Format.gsv0_normal(),
@@ -15,7 +19,16 @@ defmodule Escpos.Image do
       <<ih::size(8), 0::size(8)>>,
       data
     ]
-    |> IO.iodata_to_binary()
+  end
+
+  def pixels_to_iodata(%Pixels{width: w, height: h, data: data}) do
+    n = w * 4 * @chunk_height
+    <<data::binary-size(n), rest::binary>> = data
+
+    [
+      pixels_to_bitmap(%Pixels{width: w, height: @chunk_height, data: data}),
+      pixels_to_bitmap(%Pixels{width: w, height: h - @chunk_height, data: rest})
+    ]
   end
 
   defp make_bitmap(<<>>, _, acc) do

@@ -15,7 +15,7 @@ defmodule EscposTest do
     # Escpos.write_image(p, "test/hello.jpg")
     #    Escpos.write(p, Commands.Hardware.reset())
     #    Escpos.write(p, Commands.TextFormat.txt_normal())
-    Escpos.write_image(p, "test/hello.jpg")
+    Escpos.write_image_file(p, "test/t.png")
 
     Escpos.write(p, "\n\n\n\n")
     Escpos.write(p, Commands.Paper.full_cut())

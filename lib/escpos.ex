@@ -6,7 +6,7 @@ defmodule Escpos do
   alias Escpos.Printer
   alias Escpos.Image
 
-  def write(%Printer{type: :file, handle: handle}, data) when is_pid(handle) do
+  def write(%Printer{type: :path, handle: handle}, data) do
     IO.binwrite(handle, data)
   end
 
@@ -22,7 +22,7 @@ defmodule Escpos do
   end
 
   def write_image_data(printer, data) do
-    {:ok, pixels} = Pixels.read_file(data)
+    {:ok, pixels} = Pixels.read(data)
 
     data = Image.pixels_to_bitmap(pixels)
     write(printer, data)

@@ -1,5 +1,5 @@
 %{
   "elixir_make": {:hex, :elixir_make, "0.6.0", "38349f3e29aff4864352084fc736fa7fa0f2995a819a737554f7ebd28b85aaab", [:mix], [], "hexpm"},
   "libusb": {:git, "https://github.com/arjan/elixir_libusb.git", "fb6342b6f6179f316cf92c3710d239c37119f72a", []},
-  "pixels": {:hex, :pixels, "0.1.2", "0de6fb5529b7490fdd35a43b7c0952b63bb6f2c1c07b0a96ecdcd998e18bb0e6", [:make, :mix], [{:elixir_make, "~> 0.6.0", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"},
+  "pixels": {:hex, :pixels, "0.2.1", "fef581b455d95aaabeccf56d78aee4bfb9146837e4be8b3d0ec71ca4fe1175d0", [:make, :mix], [{:elixir_make, "~> 0.6.0", [hex: :elixir_make, repo: "hexpm", optional: false]}], "hexpm"},
 }

@@ -6,11 +6,13 @@ defmodule Escpos.ImageTest do
   test "pixels_to_bitmap" do
     {:ok, pixels} = Pixels.read_file("test/dot.png")
 
-    Image.pixels_to_bitmap(pixels)
-    |> Base.encode16()
-    |> String.to_charlist()
-    |> Enum.chunk_every(8)
-    |> IO.inspect(label: "x")
+    lines =
+      Image.pixels_to_bitmap(pixels)
+      |> Base.encode16()
+      |> String.to_charlist()
+      |> Enum.chunk_every(8)
+
+    for l <- lines, do: IO.puts(l)
   end
 
   test "image padding" do
