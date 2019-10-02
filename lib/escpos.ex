@@ -22,9 +22,9 @@ defmodule Escpos do
   end
 
   def write_image_data(printer, data) do
-    {:ok, pixels} = Pixels.read(data)
-
-    data = Image.pixels_to_bitmap(pixels)
-    write(printer, data)
+    with {:ok, pixels} <- Pixels.read(data) do
+      data = Image.pixels_to_bitmap(pixels)
+      write(printer, data)
+    end
   end
 end
